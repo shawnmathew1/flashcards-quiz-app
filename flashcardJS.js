@@ -4,6 +4,7 @@ const frontInput = document.querySelector("#front-input");
 const backInput = document.querySelector("#back-input");
 const prevButton = document.querySelector('#prev-button');
 const nextButton = document.querySelector('#next-button');
+const deleteButton = document.querySelector('#delete-button');
 
 
 
@@ -76,4 +77,27 @@ nextButton.addEventListener('click', () => {
         currentCardIndex++;
         showCard(currentCardIndex);
     }
+});
+
+
+deleteButton.addEventListener('click', () => {
+    if (flashcards.length === 0) return;
+
+
+    flashcards.splice(currentCardIndex, 1);
+    localStorage.setItem('flashcards', JSON.stringify(flashcards));
+ 
+
+    if (currentCardIndex >= flashcards.length) {
+        currentCardIndex = flashcards.length - 1;
+    } 
+
+    if (flashcards.length > 0) {
+        showCard(currentCardIndex);
+    } else {
+        document.querySelector(".card-front").textContent = "No cards";
+        document.querySelector(".card-back").textContent = "";
+    }
+
+
 });

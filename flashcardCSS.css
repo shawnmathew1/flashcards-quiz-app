@@ -120,3 +120,12 @@ body {
     border-radius: 15px;
 }
 
+.delete-button {
+    padding: 10px;
+    color: black;
+    background-color: red;
+    border: 2px solid black;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
