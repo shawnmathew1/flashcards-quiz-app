@@ -6,6 +6,7 @@ const prevButton = document.querySelector('#prev-button');
 const nextButton = document.querySelector('#next-button');
 const deleteButton = document.querySelector('#delete-button');
 const editButton = document.querySelector('#edit-button');
+const cardCounterText = document.querySelector('#card-counter-text');
 
 
 
@@ -54,6 +55,8 @@ form.addEventListener('submit', function(e) {
     currentCardIndex = flashcards.length - 1;
     showCard(currentCardIndex);
 
+    updateCardCounter();
+
 }); 
 
 
@@ -71,6 +74,8 @@ prevButton.addEventListener('click', () => {
         currentCardIndex--;
         showCard(currentCardIndex);
     }
+
+    updateCardCounter();
 });
 
 nextButton.addEventListener('click', () => {
@@ -78,6 +83,8 @@ nextButton.addEventListener('click', () => {
         currentCardIndex++;
         showCard(currentCardIndex);
     }
+
+    updateCardCounter();
 });
 
 
@@ -99,6 +106,8 @@ deleteButton.addEventListener('click', () => {
         document.querySelector(".card-front").textContent = "No cards";
         document.querySelector(".card-back").textContent = "";
     }
+
+    updateCardCounter();
 
 
 });
@@ -127,3 +136,12 @@ editButton.addEventListener('click', () => {
 
 
 });
+
+function updateCardCounter() {
+    if (flashcards.length === 0) {
+        cardCounterText.textContent = `There are no cards currently`;
+    } else {
+        cardCounterText.textContent = `Card ${currentCardIndex + 1} of ${flashcards.length}`;
+    }
+    
+}
