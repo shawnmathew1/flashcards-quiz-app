@@ -5,6 +5,7 @@ const backInput = document.querySelector("#back-input");
 const prevButton = document.querySelector('#prev-button');
 const nextButton = document.querySelector('#next-button');
 const deleteButton = document.querySelector('#delete-button');
+const editButton = document.querySelector('#edit-button');
 
 
 
@@ -98,6 +99,31 @@ deleteButton.addEventListener('click', () => {
         document.querySelector(".card-front").textContent = "No cards";
         document.querySelector(".card-back").textContent = "";
     }
+
+
+});
+
+editButton.addEventListener('click', () => {
+    if (!flashcards[currentCardIndex]) {
+        alert("No cards exist.");
+    }
+
+    const card = flashcards[currentCardIndex];
+    let frontInput = prompt("Enter the frontside of the card", card.front);
+    let backInput = prompt("Enter the backside of the card", card.back);
+
+
+    if (frontInput === null || backInput === null || frontInput.trim() === "" || backInput.trim() === "") return;
+
+    flashcards[currentCardIndex] = {
+        front: frontInput.trim(),
+        back: backInput.trim()
+    };
+
+
+
+    localStorage.setItem('flashcards', JSON.stringify(flashcards));
+    showCard(currentCardIndex);
 
 
 });
