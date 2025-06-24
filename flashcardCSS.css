@@ -139,3 +139,13 @@ body {
     margin-left: 10px;
     border-radius: 5px;
 }
+
+.shuffle-button {
+    padding: 10px;
+    color: black;
+    background-color: rgb(219, 11, 219);
+    border: 2px solid black;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+}

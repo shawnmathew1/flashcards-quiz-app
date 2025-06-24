@@ -7,7 +7,7 @@ const nextButton = document.querySelector('#next-button');
 const deleteButton = document.querySelector('#delete-button');
 const editButton = document.querySelector('#edit-button');
 const cardCounterText = document.querySelector('#card-counter-text');
-
+const shuffleButton = document.querySelector('#shuffle-button');
 
 
 let flashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
@@ -17,6 +17,7 @@ let currentCardIndex = 0;
 
 if (flashcards.length > 0 ) {
     showCard(currentCardIndex);
+    updateCardCounter();
 }
 
 
@@ -145,3 +146,24 @@ function updateCardCounter() {
     }
     
 }
+
+
+function shuffle() {
+    for (let i = flashcards.length; i > 1; i--) {
+        const randomIndex = Math.floor(Math.random() * i);
+        let temp = flashcards[i - 1];
+        flashcards[i - 1] = flashcards[randomIndex];
+        flashcards[randomIndex] = temp;
+    }
+
+    currentCardIndex = 0;
+    showCard(currentCardIndex);
+    updateCardCounter();
+    localStorage.setItem('flashcards', JSON.stringify(flashcards));
+    flashcard.classList.remove('is-flipped');
+
+}
+
+shuffleButton.addEventListener('click', () => {
+    shuffle();
+});
